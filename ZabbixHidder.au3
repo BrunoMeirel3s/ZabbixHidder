@@ -211,7 +211,7 @@ Func RestoreLastShutdownWindows()
 		Next
 
 		If UBound($aTrayItemHandles) Then
-			TrayTip("", "You have " & UBound($aTrayItemHandles) & " legacy Window(s) waiting to be restored!", 4)
+			TrayTip("", "Você possui " & UBound($aTrayItemHandles) & " janelas antigas esperando para serem restauradas!", 4)
 		EndIf
 	EndIf
 EndFunc   ;==>RestoreLastShutdownWindows
