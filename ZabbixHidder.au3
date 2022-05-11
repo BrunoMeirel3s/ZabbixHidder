@@ -6,7 +6,7 @@
 #include <Array.au3>
 #include <WinAPI.au3>
 
-Global Const $VERSION = "1.0"
+Global Const $VERSION = "1.1"
 
 ;//Sair se o programa já estiver sendo executado.
 If _Singleton("MTT", 1) = 0 Then
@@ -58,8 +58,10 @@ RestoreLastShutdownWindows()
 While 1
 	  $esconderZabbix1 = True
 	  $esconderZabbix2 = True
+	  $esconderZabbix3 = True
 
-	  If (WinExists("Zabbix: Zabbix - Mozilla Firefox") Or WinExists("Zabbix: Mapas de rede - Mozilla Firefox")) then
+	  If (WinExists("Zabbix: Zabbix - Mozilla Firefox") Or WinExists("Zabbix Hospital Porto Dias: Mapas de rede - Mozilla Firefox") Or WinExists("Zabbix Hospital Porto Dias: Mapas de rede")) then
+		  
 		 For $i = 0 To UBound($aHiddenWndList) - 1
 			If ($aHiddenWndList[$i] == "Zabbix: Zabbix - Mozilla Firefox") Then
 			   $esconderZabbix1 = false
@@ -70,14 +72,25 @@ While 1
 		 EndIf
 
 		 For $i = 0 To UBound($aHiddenWndList) - 1
-			If ($aHiddenWndList[$i] == "Zabbix: Mapas de rede - Mozilla Firefox") Then
+			If ($aHiddenWndList[$i] == "Zabbix Hospital Porto Dias: Mapas de rede - Mozilla Firefox") Then
 			   $esconderZabbix2 = false
 			EndIf
 		 Next
 		 If $esconderZabbix2 == True Then
-			HideWnd(WinGetHandle("Zabbix: Mapas de rede - Mozilla Firefox"))
+			HideWnd(WinGetHandle("Zabbix Hospital Porto Dias: Mapas de rede - Mozilla Firefox"))
 			ExitLoop
-		 EndIf
+		EndIf
+		
+		For $i = 0 To UBound($aHiddenWndList) - 1
+			If ($aHiddenWndList[$i] == "Zabbix Hospital Porto Dias: Mapas de rede") Then
+			   $esconderZabbix3 = false
+			EndIf
+		 Next
+		 If $esconderZabbix3 == True Then
+			HideWnd(WinGetHandle("Zabbix Hospital Porto Dias: Mapas de rede"))
+			ExitLoop
+		EndIf
+		
 	  EndIf
    WEnd
 
